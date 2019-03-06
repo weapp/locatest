@@ -1,15 +1,19 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-%w[logger json bundler/setup].each(&method(:require))
-
-APP_ENV = ENV["APP_ENV"] || "development"
-Bundler.require(:default, APP_ENV)
-$LOAD_PATH.unshift("#{__dir__}/lib")
-Dir[File.dirname(__FILE__) + "/lib/**/*.rb"].sort.each { |file| require file }
-Dotenv.load(".env", ".env.#{APP_ENV}")
+require File.expand_path("config/boot", File.dirname(__FILE__))
 
 class App
+  def self.initialize!
+    Dir["#{App.root}/lib/**/*.rb"].sort.each { |file| require file }
+    Dir["#{App.root}/config/initializers/**/*.rb"].sort.each { |file| require file }
+    Dir["#{App.root}/app/**/*.rb"].sort.each { |file| require file }
+  end
+
+  def self.root
+    File.dirname(__FILE__)
+  end
+
   def self.logger
     @logger ||= Logger.new(STDOUT)
   end
@@ -29,5 +33,7 @@ class App
     APP_ENV
   end
 end
+
+App.initialize!
 
 App.run if $PROGRAM_NAME == __FILE__

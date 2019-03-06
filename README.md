@@ -78,7 +78,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 | Boolean   | yes       | closed          | true or false         |
 | String    |           | hours           | opening hours.*       |
 
-*hours format:
+\*hours format:
 ```
 10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00| 11:00-18:00
 ```
@@ -96,7 +96,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 | Boolean   | yes       | closed          | true or false         |
 | String    |           | hours           | opening hours.*       |
 
-*hours format:
+\*hours format:
 ```
 Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00| Sat:11:00-18:00|Sun:11:00-18:00
 ```
@@ -116,7 +116,107 @@ Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|
 | Boolean   | yes       | closed          | true or false         |
 | String    |           | hours           | opening hours.*       |
 
-*hours format:
+\*hours format:
 ```
 10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00
+```
+
+
+# Debug info
+
+```sh
+curl -i https://rails-code-challenge.herokuapp.com/platform_a/venue?api_key=0a244d74f524b60ac8582131703e99ac
+HTTP/1.1 200 OK
+Server: Cowboy
+Date: Wed, 06 Mar 2019 11:59:18 GMT
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Etag: W/"0aabcd84291ab994acd93b01a9dab37a"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: e4d37731-26dc-4a17-babc-d56026df2c33
+X-Runtime: 0.200014
+Transfer-Encoding: chunked
+Via: 1.1 vegur
+
+{"id":5,"name":"Cummings-Lehner","address":"93432 Dario Station","lat":"59.1485919774","lng":"9.6239895111","category_id":1004,"closed":true,"hours":"10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00","created_at":"2019-03-04T17:09:00.605Z","updated_at":"2019-03-04T17:09:00.605Z","api_key":"0a244d74f524b60ac8582131703e99ac"}
+
+# indented with jq:
+{
+  "id": 5,
+  "name": "Cummings-Lehner",
+  "address": "93432 Dario Station",
+  "lat": "59.1485919774",
+  "lng": "9.6239895111",
+  "category_id": 1004,
+  "closed": true,
+  "hours": "10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00",
+  "created_at": "2019-03-04T17:09:00.605Z",
+  "updated_at": "2019-03-04T17:09:00.605Z",
+  "api_key": "0a244d74f524b60ac8582131703e99ac"
+}
+
+
+curl -i https://rails-code-challenge.herokuapp.com/platform_b/venue?api_key=0a244d74f524b60ac8582131703e99ac
+ey=0a244d74f524b60ac8582131703e99ac
+HTTP/1.1 200 OK
+Server: Cowboy
+Date: Wed, 06 Mar 2019 11:59:35 GMT
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Etag: W/"1940149f510ef9a3ceff9641886178ef"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 39abbdd3-8908-4636-8e25-828a91ba5abb
+X-Runtime: 0.034812
+Transfer-Encoding: chunked
+Via: 1.1 vegur
+
+{"id":5,"name":"Cummings-Lehner","street_address":"93432 Dario Station","lat":"59.1485919774","lng":"9.6239895111","category_id":2004,"closed":false,"hours":"Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00","created_at":"2019-03-04T17:09:00.640Z","updated_at":"2019-03-04T17:09:00.640Z","api_key":"0a244d74f524b60ac8582131703e99ac"}
+
+# indented with jq:
+{
+  "id": 5,
+  "name": "Cummings-Lehner",
+  "street_address": "93432 Dario Station",
+  "lat": "59.1485919774",
+  "lng": "9.6239895111",
+  "category_id": 2004,
+  "closed": false,
+  "hours": "Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00",
+  "created_at": "2019-03-04T17:09:00.640Z",
+  "updated_at": "2019-03-04T17:09:00.640Z",
+  "api_key": "0a244d74f524b60ac8582131703e99ac"
+}
+
+
+curl -i https://rails-code-challenge.herokuapp.com/platform_c/venue?api_key=0a244d74f524b60ac8582131703e99ac
+HTTP/1.1 200 OK
+Server: Cowboy
+Date: Wed, 06 Mar 2019 11:59:49 GMT
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Etag: W/"8ee3e39a47ec1b0a1601d611485d99d0"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: f3766108-fece-4422-941a-51ae065c4e61
+X-Runtime: 0.027118
+Transfer-Encoding: chunked
+Via: 1.1 vegur
+
+{"id":5,"name":"Cummings-Lehner","address_line_1":"93432 Dario Station","address_line_2":"Apt. 809","website":"https://localistico.com","phone_number":"+34666999666","lat":"59.1485919774","lng":"9.6239895111","closed":false,"hours":"10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00","created_at":"2019-03-04T17:09:00.657Z","updated_at":"2019-03-04T17:09:00.657Z","api_key":"0a244d74f524b60ac8582131703e99ac"}
+
+# indented with jq:
+{
+  "id": 5,
+  "name": "Cummings-Lehner",
+  "address_line_1": "93432 Dario Station",
+  "address_line_2": "Apt. 809",
+  "website": "https://localistico.com",
+  "phone_number": "+34666999666",
+  "lat": "59.1485919774",
+  "lng": "9.6239895111",
+  "closed": false,
+  "hours": "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00",
+  "created_at": "2019-03-04T17:09:00.657Z",
+  "updated_at": "2019-03-04T17:09:00.657Z",
+  "api_key": "0a244d74f524b60ac8582131703e99ac"
+}
 ```
