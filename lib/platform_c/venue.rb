@@ -14,6 +14,18 @@ module PlatformC
     field :hours # , VenueHoursC
     field :created_at
     field :updated_at
-    field :api_key
+
+    def self.from_standard(attrs)
+      new(id: attrs["id"],
+          name: attrs["name"],
+          address_line_1: attrs["address_line_1"],
+          address_line_2: attrs["address_line_2"],
+          website: attrs["website"],
+          phone_number: attrs["phone_number"],
+          lat: attrs["lat"],
+          lng: attrs["lng"],
+          closed: attrs["closed"],
+          hours: attrs["hours"])
+    end
   end
 end
