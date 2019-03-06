@@ -11,6 +11,15 @@ ActiveRecord::Schema.define do
     t.string "phone_number"
     t.string "address_line_1"
     t.string "address_line_2"
-    # t.string :hours # , VenueHoursLocaltest
+    t.timestamps null: false
+  end
+
+  create_table "hours", force: true do |t|
+    t.references "venue", index: true, foreign_key: {on_delete: :cascade}
+    t.integer "day"
+    t.string "starts_at"
+    t.string "ends_at"
+
+    t.index ["venue", "day"], unique: true
   end
 end

@@ -80,7 +80,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 
 \*hours format:
 ```
-10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00| 11:00-18:00
+10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00
 ```
 
 
@@ -98,7 +98,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 
 \*hours format:
 ```
-Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00| Sat:11:00-18:00|Sun:11:00-18:00
+Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00
 ```
 
 

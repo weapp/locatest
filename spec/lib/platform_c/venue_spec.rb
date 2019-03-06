@@ -22,8 +22,7 @@ describe PlatformC::Venue do
       }')
     end
 
-    it { expect(subject.id).to eq 5 }
-    it { expect(subject.name).to eq "Cummings-Lehner"}
+    it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.address_line_1).to eq "93432 Dario Station" }
     it { expect(subject.address_line_2).to eq "Apt. 809" }
     it { expect(subject.website).to eq "https://localistico.com" }
@@ -31,15 +30,14 @@ describe PlatformC::Venue do
     it { expect(subject.lat).to eq "59.1485919774" }
     it { expect(subject.lng).to eq "9.6239895111" }
     it { expect(subject.closed).to eq false }
-    xit { expect(subject.hours).not_to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
+    it { expect(subject.hours).to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
     it { expect(subject.created_at).to eq "2019-03-04T17:09:00.657Z" }
     it { expect(subject.updated_at).to eq "2019-03-04T17:09:00.657Z" }
   end
 
   describe "from standard" do
     subject { described_class.from_standard(example_venue.as_json) }
-    xit { expect(subject.id).to eq 5 }
-    it { expect(subject.name).to eq "Cummings-Lehner"}
+    it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.address_line_1).to eq "93432 Dario Station" }
     it { expect(subject.address_line_2).to eq "Apt. 809" }
     it { expect(subject.website).to eq "https://localistico.com" }
@@ -47,6 +45,6 @@ describe PlatformC::Venue do
     it { expect(subject.lat).to eq "59.1485919774" }
     it { expect(subject.lng).to eq "9.6239895111" }
     it { expect(subject.closed).to eq false }
-    xit { expect(subject.hours).not_to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
+    it { expect(subject.hours).to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
   end
 end
