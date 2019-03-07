@@ -9,7 +9,7 @@
 * [x] Endpoint de consulta
 * [x] Endpoint de actualizacion
 * [x] Workers para actualizar las plataformas
-* [ ] Validacion de inputs
+* [x] Validacion de inputs
 * [ ] Manejo de decimals
 * [x] Documentar api para front
 * [ ] Tests de integracion
@@ -69,7 +69,7 @@ or
 
   ```
   GET /venue
-  VENUE_OBJECT                        # you can send a body with full data
+  VENUE_OBJECT                        # you must send a body with full data
 
   response:
   {
@@ -85,6 +85,9 @@ or
 
   response:
   VENUE_OBJECT
+
+  response error example:
+  {"lng":["is missing"]}
   ```
 
 ## Assumption and Notes

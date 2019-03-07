@@ -49,7 +49,7 @@ module Base
     def update_venue(data, venue = "venue")
       venue_call(method: :patch,
                  path: path(venue),
-                 body: {venue: venue_class.new(data).as_json})
+                 body: { venue: venue_class.new(data).as_json })
     end
 
     def update_async_from_standard(data)
