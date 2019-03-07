@@ -2,18 +2,90 @@
 
 # TO DO
 
-[x] Cliente para plataformas
-[x] Modelo de plataformas
-[x] Modelos internos
-[X] Test unitarios
-[x] Endpoint de consulta
-[x] Endpoint de actualizacion
-[x] Workers para actualizar las plataformas
-[ ] Validacion de inputs
-[ ] Manejo de decimals
-[ ] Documentar api para front
-[ ] Tests de integracion
+* [x] Cliente para plataformas
+* [x] Modelo de plataformas
+* [x] Modelos internos
+* [X] Test unitarios
+* [x] Endpoint de consulta
+* [x] Endpoint de actualizacion
+* [x] Workers para actualizar las plataformas
+* [ ] Validacion de inputs
+* [ ] Manejo de decimals
+* [x] Documentar api para front
+* [ ] Tests de integracion
 
+## API
+
+### Objects
+
+HOUR_OBJECT:
+
+```
+{
+  "starts_at": string               # format: "00:00"
+  "ends_at": string                 # format: "00:00"
+}
+```
+
+VENUE_OBJECT:
+
+```
+{
+  "name" : string                   # name of the venue
+  "lat" : decimal                   # latitude of the venue
+  "lng" : decimal                   # longitude of the venue
+  "category_id" : integer           # category of the venue from 0 to 100; -1 if not available for the service
+  "closed" : boolean                # availability of the venue
+  "website" : string                # url for website
+  "phone_number" : string           # phone number
+  "address_line_1" : string         # first line of address
+  "address_line_2" : string         # second line of address
+  "hours": [HOUR_OBJECT]            # 7 HOUR_OBJECT from monday to sunday
+}
+```
+
+EXTERNAL_INFO:
+
+```
+{
+      "service": string,            # provider platform
+      "status": "ok",               # all went well
+      "data": VENUE_OBJECT          # data of the venue from this platform
+}
+```
+or
+
+```
+{
+      "service": string,            # provider platform
+      "status": "error",            # something went wrong
+      "error": mixed                # string or integer for determine the error
+}
+```
+
+### Requests
+
+* For get venue
+
+  ```
+  GET /venue
+  VENUE_OBJECT                        # you can send a body with full data
+
+  response:
+  {
+    "locatest" : VENUE_OBJECT         # information stored in our database
+    "externals": [EXTERNAL_INFO]      # information from other platforms
+  }
+  ```
+
+* For update venue
+
+  ```
+  POST /venue
+
+  response:
+  VENUE_OBJECT
+  ```
 
 ## Assumption and Notes
 
@@ -66,6 +138,7 @@ Creemos que la siguiente información puede serte útil: Tu API KEY es la siguie
 Endpoints:
 
 1. Ver información sobre el establecimiento en las plataformas A, B y C:
+
 ```
 GET https://rails-code-challenge.herokuapp.com/platform_a/venue?api_key=API_KEY
 GET https://rails-code-challenge.herokuapp.com/platform_b/venue?api_key=API_KEY
@@ -73,6 +146,7 @@ GET https://rails-code-challenge.herokuapp.com/platform_c/venue?api_key=API_KEY
 ```
 
 2. Actualizar información sobre el establecimiento en las plataformas A, B y C:
+
 ```
 PATCH https://rails-code-challenge.herokuapp.com/platform_a/venue?api_key=API_KEY
 PATCH https://rails-code-challenge.herokuapp.com/platform_b/venue?api_key=API_KEY
@@ -95,6 +169,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 | String    |           | hours           | opening hours.*       |
 
 \*hours format:
+
 ```
 10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00
 ```
@@ -113,6 +188,7 @@ Estas son las estructuras de datos que recibirás tras realizar cada uno de los 
 | String    |           | hours           | opening hours.*       |
 
 \*hours format:
+
 ```
 Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00
 ```
@@ -133,6 +209,7 @@ Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|
 | String    |           | hours           | opening hours.*       |
 
 \*hours format:
+
 ```
 10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00
 ```
