@@ -19,6 +19,7 @@ module Base
     def initialize(*)
       super
       default_options[:params][:api_key] = ENV["RAILS_CODE_CHALLENGE_API_KEY"]
+      default_options[:headers]["Content-Type"] = "application/json"
     end
 
     def url
@@ -52,8 +53,8 @@ module Base
     end
 
     def update_async_from_standard(data)
-      update_worker.perform_async(venue_class.from_standard(data).as_json)
-      # update_worker.new.perform(venue_class.from_standard(data).as_json)
+      # update_worker.perform_async(venue_class.from_standard(data).as_json)
+      update_worker.new.perform(venue_class.from_standard(data).as_json)
     end
 
     def path(venue)
@@ -80,9 +81,10 @@ module Base
       path = opts.fetch(:path, "/")
       body = opts.fetch(:body, nil)
       params = opts.fetch(:params, nil)
-      headers = opts.fetch(:headers, [])
+      headers = opts.fetch(:headers, {})
 
-      body = JSON.dump(body) if body
+      body = body.to_json if body
+
       @conn.run_request(method_name, path, body, headers) do |request|
         request.params.update(params) if params
         yield(request) if block_given?

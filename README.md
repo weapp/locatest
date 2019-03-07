@@ -7,8 +7,9 @@
 [x] Modelos internos
 [X] Test unitarios
 [x] Endpoint de consulta
-[ ] Endpoint de actualizacion
+[x] Endpoint de actualizacion
 [x] Workers para actualizar las plataformas
+[ ] Validacion de inputs
 [ ] Manejo de decimals
 [ ] Documentar api para front
 [ ] Tests de integracion
@@ -17,6 +18,7 @@
 ## Assumption and Notes
 
 * The API KEY provided is only for development. Production API KEY should be managed as a secret environment variable.
+
 
 ## Requirements
 Hola Manuel, un posible cliente: “The Original Mexican Burrito”, nos ha mandado el siguiente correo en el que nos hace una propuesta para el desarrollo de una pequeña aplicación.

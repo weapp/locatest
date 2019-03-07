@@ -19,6 +19,7 @@ gem "redis-namespace"
 gem "sidekiq", "4.2.10"
 
 group :development, :test do
+  gem "rerun", require: false
   gem "foreman", require: false
   gem "pry"
   gem "rake", require: false

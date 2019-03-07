@@ -7,7 +7,10 @@ module Base
     include Sidekiq::Worker
 
     def perform(data)
-      client.new.update_venue(data)
+      response = client.new.update_venue(data)
+      return if response.ok?
+
+      raise "retry worker: #{response.error}"
     end
 
     def client

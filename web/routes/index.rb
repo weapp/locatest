@@ -20,3 +20,8 @@ App.get("/venue") do
     ]
   }.to_json
 end
+
+App.post("/venue") do
+  data = JSON.load(request.body)
+  Venue.first.update_all(data).to_json
+end
