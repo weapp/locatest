@@ -14,6 +14,7 @@ module PlatformA
 
     class << self
       def from_standard(attrs)
+        p attrs
         new(name: attrs["name"],
             address: attrs["address_line_1"],
             lat: attrs["lat"],
@@ -26,6 +27,8 @@ module PlatformA
       private
 
       def from_standard_hours(hours)
+        return nil unless hours.present?
+
         hours.map { |hsh| "#{hsh['starts_at']}-#{hsh['ends_at']}" }.join("|")
       end
 
@@ -39,11 +42,14 @@ module PlatformA
       {
         "name" => name,
         "address_line_1" => address,
+        "address_line_2" => undefined_str,
         "lat" => lat,
         "lng" => lng,
         "category_id" => to_standard_cat_id(category_id),
         "closed" => closed,
-        "hours" => to_standard_hours(hours)
+        "hours" => to_standard_hours(hours),
+        "website" => undefined_str,
+        "phone_number" => undefined_str
       }
     end
 
@@ -55,6 +61,8 @@ module PlatformA
     end
 
     def to_standard_hours(hours)
+      return [] unless hours.present?
+
       hours.split("|").map do |data|
         starts_at, ends_at = data.split("-")
         { "starts_at" => starts_at, "ends_at" => ends_at }

@@ -34,18 +34,22 @@ describe PlatformB::Venue do
       expect(subject.to_standard).to eq(
         "name" => "Cummings-Lehner",
         "address_line_1" => "93432 Dario Station",
+        "address_line_2" => "<not available>",
+        "phone_number" => "<not available>",
+        "website" => "<not available>",
         "lat" => "59.1485919774",
         "lng" => "9.6239895111",
         "category_id" => 4,
         "closed" => false,
         "hours" => [
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"11:00", "ends_at"=>"18:00"},
-          {"starts_at"=>"11:00", "ends_at"=>"18:00"}],
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "11:00", "ends_at" => "18:00" },
+          { "starts_at" => "11:00", "ends_at" => "18:00" }
+        ]
       )
     end
   end

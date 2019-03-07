@@ -43,15 +43,17 @@ describe PlatformC::Venue do
         "lat" => "59.1485919774",
         "lng" => "9.6239895111",
         "phone_number" => "+34666999666",
+        "category_id" => -1,
         "closed" => false,
         "hours" => [
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
-          {"starts_at"=>"11:00", "ends_at"=>"18:00"},
-          {"starts_at"=>"11:00", "ends_at"=>"18:00"}],
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "10:00", "ends_at" => "22:00" },
+          { "starts_at" => "11:00", "ends_at" => "18:00" },
+          { "starts_at" => "11:00", "ends_at" => "18:00" }
+        ]
       )
     end
   end

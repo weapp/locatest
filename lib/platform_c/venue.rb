@@ -28,6 +28,8 @@ module PlatformC
       end
 
       def from_standard_hours(hours)
+        return nil unless hours.present?
+
         hours.map { |hsh| "#{hsh['starts_at']}-#{hsh['ends_at']}" }.join(",")
       end
     end
@@ -37,12 +39,13 @@ module PlatformC
         "name" => name,
         "address_line_1" => address_line_1,
         "address_line_2" => address_line_2,
-        "website" => website,
-        "phone_number" => phone_number,
         "lat" => lat,
         "lng" => lng,
+        "category_id" => undefined_int,
         "closed" => closed,
-        "hours" => to_standard_hours(hours)
+        "hours" => to_standard_hours(hours),
+        "website" => website,
+        "phone_number" => phone_number
       }
     end
 

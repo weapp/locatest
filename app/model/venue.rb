@@ -13,4 +13,9 @@ class Venue < ApplicationRecord
       json["hours"] = hours.sort_by(&:day).map(&:only_hours)
     end
   end
+
+  def update_all(data)
+    update(data)
+    Base::Client.update_venue_in_all_platforms(as_json)
+  end
 end

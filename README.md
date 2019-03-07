@@ -1,5 +1,19 @@
 # Localest
 
+# TO DO
+
+[x] Cliente para plataformas
+[x] Modelo de plataformas
+[x] Modelos internos
+[X] Test unitarios
+[x] Endpoint de consulta
+[ ] Endpoint de actualizacion
+[x] Workers para actualizar las plataformas
+[ ] Manejo de decimals
+[ ] Documentar api para front
+[ ] Tests de integracion
+
+
 ## Assumption and Notes
 
 * The API KEY provided is only for development. Production API KEY should be managed as a secret environment variable.

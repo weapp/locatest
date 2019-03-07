@@ -2,11 +2,15 @@
 
 module Base
   class Response
-    attr_reader :status, :data
+    attr_reader :status, :data, :error
 
     def initialize(status, data)
       @status = status
-      @data = data
+      if ok?
+        @data = data
+      else
+        @error = data
+      end
     end
 
     def ok_then
@@ -16,7 +20,7 @@ module Base
     end
 
     def error_then
-      return Response.new(:error, yield(data)) if block_given? && error?
+      return Response.new(:error, yield(error)) if block_given? && error?
 
       self
     end

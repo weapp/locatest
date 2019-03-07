@@ -26,6 +26,8 @@ module PlatformB
       end
 
       def from_standard_hours(hours)
+        return nil unless hours.present?
+
         hours.each_with_index.map do |hsh, i|
           "#{DAYS[i]}:#{hsh['starts_at']}-#{hsh['ends_at']}"
         end.join("|")
@@ -41,11 +43,14 @@ module PlatformB
       {
         "name" => name,
         "address_line_1" => street_address,
+        "address_line_2" => undefined_str,
         "lat" => lat,
         "lng" => lng,
         "category_id" => to_standard_cat_id(category_id),
         "closed" => closed,
-        "hours" => to_standard_hours(hours)
+        "hours" => to_standard_hours(hours),
+        "website" => undefined_str,
+        "phone_number" => undefined_str
       }
     end
 
@@ -57,6 +62,8 @@ module PlatformB
     end
 
     def to_standard_hours(hours)
+      return [] unless hours.present?
+
       hours.split("|").map do |data|
         starts_at, ends_at = data[4..-1].split("-")
         { "starts_at" => starts_at, "ends_at" => ends_at }

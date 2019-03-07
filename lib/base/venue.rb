@@ -7,5 +7,13 @@ module Base
     def as_json(*)
       super.except("created_at", "updated_at")
     end
+
+    def undefined_str
+      "<not available>"
+    end
+
+    def undefined_int
+      -1
+    end
   end
 end
