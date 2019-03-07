@@ -29,6 +29,25 @@ describe PlatformA::Venue do
     it { expect(subject.hours).to eq "10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00" }
     it { expect(subject.created_at).to eq "2019-03-04T17:09:00.605Z" }
     it { expect(subject.updated_at).to eq "2019-03-04T17:09:00.605Z" }
+
+    it do
+      expect(subject.to_standard).to eq(
+        "name" => "Cummings-Lehner",
+        "address_line_1" => "93432 Dario Station",
+        "category_id" => 4,
+        "closed" => true,
+        "lat" => "59.1485919774",
+        "lng" => "9.6239895111",
+        "hours" => [
+          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
+          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
+          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
+          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
+          {"starts_at"=>"10:00", "ends_at"=>"22:00"},
+          {"starts_at"=>"11:00", "ends_at"=>"18:00"},
+          {"starts_at"=>"11:00", "ends_at"=>"18:00"}],
+      )
+    end
   end
 
   describe "from standard" do

@@ -1,0 +1,26 @@
+default: &default
+  # adapter: mysql2
+  # encoding: utf8
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # username: root
+  # password:
+  # socket: /tmp/mysql.sock
+  adapter: "mysql2"
+  host: "localhost"
+  database: "locatest"
+  username: "root"
+  password:
+
+development:
+  <<: *default
+  database: locatest_development
+
+test:
+  <<: *default
+  database: locatest_test
+
+production:
+  <<: *default
+  database: locatest_production
+  username: locatest
+  password: <%= ENV['LOCATEST_DATABASE_PASSWORD'] %>

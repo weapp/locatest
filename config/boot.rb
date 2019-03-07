@@ -4,7 +4,7 @@ require 'bundler'
 
 %w[logger json].each(&method(:require))
 
-APP_ENV = ENV["APP_ENV"] || "development"
+APP_ENV = ENV["APP_ENV"] ||  ENV["RACK_ENV"] || "development"
 Bundler.require(:default, APP_ENV)
 Dotenv.load(".env", ".env.#{APP_ENV}")
 

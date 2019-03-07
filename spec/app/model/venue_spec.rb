@@ -7,7 +7,6 @@ describe Venue do
 
   it do
     expect(subject.as_json).to include(
-      "id" => nil,
       "name" => "Cummings-Lehner",
       "address_line_1" => "93432 Dario Station",
       "address_line_2" => "Apt. 809",

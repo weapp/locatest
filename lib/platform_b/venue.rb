@@ -36,5 +36,31 @@ module PlatformB
         cat_id + 2000
       end
     end
+
+    def to_standard
+      {
+        "name" => name,
+        "address_line_1" => street_address,
+        "lat" => lat,
+        "lng" => lng,
+        "category_id" => to_standard_cat_id(category_id),
+        "closed" => closed,
+        "hours" => to_standard_hours(hours)
+      }
+    end
+
+    private
+
+    # This should be moved to yaml or database for production
+    def to_standard_cat_id(category_id)
+      category_id - 2000
+    end
+
+    def to_standard_hours(hours)
+      hours.split("|").map do |data|
+        starts_at, ends_at = data[4..-1].split("-")
+        { "starts_at" => starts_at, "ends_at" => ends_at }
+      end
+    end
   end
 end

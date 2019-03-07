@@ -4,7 +4,8 @@ class Venue < ApplicationRecord
   has_many :hours, dependent: :destroy
 
   def as_json(*)
-    super(exclude: "id").tap do |json|
+    super.tap do |json|
+      json.delete("id")
       # sort_by is made by application instead database
       # order(:day) is made by database
       # but sort_by works even with unsaved models, and is better for testing

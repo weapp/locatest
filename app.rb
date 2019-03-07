@@ -3,11 +3,14 @@
 
 require File.expand_path("config/boot", File.dirname(__FILE__))
 
-class App
+class App < Sinatra::Base
   def self.initialize!
+    register Sinatra::ActiveRecordExtension
+    set :session_secret, ENV.fetch("SESSION_SECRET")
+
     Dir["#{App.root}/lib/**/*.rb"].sort.each { |file| require file }
     Dir["#{App.root}/config/initializers/**/*.rb"].sort.each { |file| require file }
-    Dir["#{App.root}/app/**/*.rb"].sort.each { |file| require file }
+    Dir["#{App.root}/{app,web}/**/*.rb"].sort.each { |file| require file }
   end
 
   def self.root

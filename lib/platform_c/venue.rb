@@ -31,5 +31,28 @@ module PlatformC
         hours.map { |hsh| "#{hsh['starts_at']}-#{hsh['ends_at']}" }.join(",")
       end
     end
+
+    def to_standard
+      {
+        "name" => name,
+        "address_line_1" => address_line_1,
+        "address_line_2" => address_line_2,
+        "website" => website,
+        "phone_number" => phone_number,
+        "lat" => lat,
+        "lng" => lng,
+        "closed" => closed,
+        "hours" => to_standard_hours(hours)
+      }
+    end
+
+    private
+
+    def to_standard_hours(hours)
+      hours.split(",").map do |data|
+        starts_at, ends_at = data.split("-")
+        { "starts_at" => starts_at, "ends_at" => ends_at }
+      end
+    end
   end
 end
