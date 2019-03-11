@@ -22,8 +22,8 @@ describe PlatformA::Venue do
 
     it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.address).to eq "93432 Dario Station" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.category_id).to eq 1004 }
     it { expect(subject.closed).to eq true }
     it { expect(subject.hours).to eq "10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00" }
@@ -39,8 +39,8 @@ describe PlatformA::Venue do
         "website" => "<not available>",
         "category_id" => 4,
         "closed" => true,
-        "lat" => "59.1485919774",
-        "lng" => "9.6239895111",
+        "lat" => BigDecimal("59.1485919774"),
+        "lng" => BigDecimal("9.6239895111"),
         "hours" => [
           { "starts_at" => "10:00", "ends_at" => "22:00" },
           { "starts_at" => "10:00", "ends_at" => "22:00" },
@@ -59,8 +59,8 @@ describe PlatformA::Venue do
 
     it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.address).to eq "93432 Dario Station" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.category_id).to eq 1004 }
     it { expect(subject.closed).to eq false }
     it { expect(subject.hours).to eq "10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00" }
@@ -71,8 +71,8 @@ describe PlatformA::Venue do
         "category_id" => 1004,
         "closed" => false,
         "hours" => "10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|10:00-22:00|11:00-18:00|11:00-18:00",
-        "lat" => "59.1485919774",
-        "lng" => "9.6239895111",
+        "lat" => BigDecimal("59.1485919774"),
+        "lng" => BigDecimal("9.6239895111"),
         "name" => "Cummings-Lehner"
       )
     end

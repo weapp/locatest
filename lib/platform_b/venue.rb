@@ -6,8 +6,8 @@ module PlatformB
 
     field :name
     field :street_address
-    field :lat
-    field :lng
+    field :lat, BigDecimal
+    field :lng, BigDecimal
     field :category_id, :integer
     field :closed, :bool
     field :hours # , VenueHoursB

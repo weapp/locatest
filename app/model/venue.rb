@@ -15,6 +15,7 @@ class Venue < ApplicationRecord
   end
 
   def update_all(data)
+    data[:hours].map! { |h| Hour.new(h) }
     update(data)
     Base::Client.update_venue_in_all_platforms(as_json)
     self

@@ -5,14 +5,14 @@
 * [x] Cliente para plataformas
 * [x] Modelo de plataformas
 * [x] Modelos internos
-* [X] Test unitarios
+* [x] Test unitarios
 * [x] Endpoint de consulta
 * [x] Endpoint de actualizacion
 * [x] Workers para actualizar las plataformas
 * [x] Validacion de inputs
-* [ ] Manejo de decimals
+* [x] Manejo de decimals
 * [x] Documentar api para front
-* [ ] Tests de integracion
+* [x] Tests de integracion
 
 ## API
 
@@ -22,8 +22,8 @@ HOUR_OBJECT:
 
 ```
 {
-  "starts_at": string               # format: "00:00"
-  "ends_at": string                 # format: "00:00"
+  "starts_at": string                 # format: "00:00"
+  "ends_at": string                   # format: "00:00"
 }
 ```
 
@@ -31,16 +31,16 @@ VENUE_OBJECT:
 
 ```
 {
-  "name" : string                   # name of the venue
-  "lat" : decimal                   # latitude of the venue
-  "lng" : decimal                   # longitude of the venue
-  "category_id" : integer           # category of the venue from 0 to 100; -1 if not available for the service
-  "closed" : boolean                # availability of the venue
-  "website" : string                # url for website
-  "phone_number" : string           # phone number
-  "address_line_1" : string         # first line of address
-  "address_line_2" : string         # second line of address
-  "hours": [HOUR_OBJECT]            # 7 HOUR_OBJECT from monday to sunday
+  "name" : string                     # name of the venue
+  "lat" : decimal                     # latitude of the venue
+  "lng" : decimal                     # longitude of the venue
+  "category_id" : integer             # category of the venue from 0 to 100; -1 if not available for the service
+  "closed" : boolean                  # availability of the venue
+  "website" : string                  # url for website
+  "phone_number" : string             # phone number
+  "address_line_1" : string           # first line of address
+  "address_line_2" : string           # second line of address
+  "hours": [HOUR_OBJECT]              # 7 HOUR_OBJECT from monday to sunday
 }
 ```
 
@@ -48,18 +48,18 @@ EXTERNAL_INFO:
 
 ```
 {
-      "service": string,            # provider platform
-      "status": "ok",               # all went well
-      "data": VENUE_OBJECT          # data of the venue from this platform
+      "service": string,              # provider platform
+      "status": "ok",                 # all went well
+      "data": VENUE_OBJECT            # data of the venue from this platform
 }
 ```
 or
 
 ```
 {
-      "service": string,            # provider platform
-      "status": "error",            # something went wrong
-      "error": mixed                # string or integer for determine the error
+      "service": string,              # provider platform
+      "status": "error",              # something went wrong
+      "error": mixed                  # string or integer for determine the error
 }
 ```
 
@@ -69,12 +69,21 @@ or
 
   ```
   GET /venue
-  VENUE_OBJECT                        # you must send a body with full data
 
   response:
+  status: 200
   {
-    "locatest" : VENUE_OBJECT         # information stored in our database
-    "externals": [EXTERNAL_INFO]      # information from other platforms
+    "status": "ok",
+    "data": {
+      "locatest" : VENUE_OBJECT       # information stored in our database
+      "externals": [EXTERNAL_INFO]    # information from other platforms
+    }
+  }
+
+  status: 500
+  {
+    "status": "error",
+    "error": "Mysql2::Error::ConnectionError"
   }
   ```
 
@@ -82,12 +91,23 @@ or
 
   ```
   POST /venue
+  VENUE_OBJECT                        # you must send a body with full data
 
   response:
-  VENUE_OBJECT
+  status: 200
+
+  {
+    "status": "ok",
+    "data": VENUE_OBJECT
+  }
 
   response error example:
-  {"lng":["is missing"]}
+  status: 400
+
+  {
+    "status": "error",
+    "error": {"lng":["is missing"]}   # each attribute can appears here with text messages
+  }
   ```
 
 ## Assumption and Notes

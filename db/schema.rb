@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_231933) do
+ActiveRecord::Schema.define(version: 2019_03_11_211817) do
 
   create_table "hours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "venue_id"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2019_03_06_231933) do
 
   create_table "venues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "lat"
     t.string "lng"
     t.integer "category_id"
     t.boolean "closed"
@@ -33,6 +32,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_231933) do
     t.string "phone_number"
     t.string "address_line_1"
     t.string "address_line_2"
+    t.decimal "lat", precision: 12, scale: 10
+    t.decimal "lon", precision: 13, scale: 10
   end
 
   add_foreign_key "hours", "venues"

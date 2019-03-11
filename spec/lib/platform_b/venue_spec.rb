@@ -22,8 +22,8 @@ describe PlatformB::Venue do
 
     it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.street_address).to eq "93432 Dario Station" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.category_id).to eq 2004 }
     it { expect(subject.closed).to eq false }
     it { expect(subject.hours).to eq "Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00" }
@@ -37,8 +37,8 @@ describe PlatformB::Venue do
         "address_line_2" => "<not available>",
         "phone_number" => "<not available>",
         "website" => "<not available>",
-        "lat" => "59.1485919774",
-        "lng" => "9.6239895111",
+        "lat" => BigDecimal("59.1485919774"),
+        "lng" => BigDecimal("9.6239895111"),
         "category_id" => 4,
         "closed" => false,
         "hours" => [
@@ -59,8 +59,8 @@ describe PlatformB::Venue do
 
     it { expect(subject.name).to eq "Cummings-Lehner" }
     it { expect(subject.street_address).to eq "93432 Dario Station" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.category_id).to eq 2004 }
     it { expect(subject.closed).to eq false }
     it { expect(subject.hours).to eq "Mon:10:00-22:00|Tue:10:00-22:00|Wed:10:00-22:00|Thu:10:00-22:00|Fri:10:00-22:00|Sat:11:00-18:00|Sun:11:00-18:00" }

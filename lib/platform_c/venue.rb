@@ -7,8 +7,8 @@ module PlatformC
     field :address_line_2
     field :website
     field :phone_number
-    field :lat
-    field :lng
+    field :lat, BigDecimal
+    field :lng, BigDecimal
     field :closed, :bool
     field :hours # , VenueHoursC
     field :created_at
