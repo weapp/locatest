@@ -23,6 +23,7 @@ gem "sidekiq", "4.2.10"
 group :development, :test do
   gem "foreman", require: false
   gem "pry"
+  gem "rack-test"
   gem "rake", require: false
   gem "rb-readline", require: false
   gem "rerun", require: false

@@ -4,13 +4,15 @@ require "foxy/model"
 
 module Base
   class UpdateWorker
+    Retry = Class.new(StandardError)
+
     include Sidekiq::Worker
 
     def perform(data)
-      response = client.new.update_venue(data)
+      response = client.instance.update_venue(data)
       return if response.ok?
 
-      raise "retry worker: #{response.error}"
+      raise Retry, "retry worker: #{response.error}"
     end
 
     def client

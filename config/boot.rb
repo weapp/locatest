@@ -2,7 +2,7 @@
 
 require 'bundler'
 
-%w[logger json].each(&method(:require))
+%w[logger json bigdecimal].each(&method(:require))
 
 APP_ENV = ENV["APP_ENV"] ||  ENV["RACK_ENV"] || "development"
 Bundler.require(:default, APP_ENV)

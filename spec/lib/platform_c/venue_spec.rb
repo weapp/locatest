@@ -27,8 +27,8 @@ describe PlatformC::Venue do
     it { expect(subject.address_line_2).to eq "Apt. 809" }
     it { expect(subject.website).to eq "https://localistico.com" }
     it { expect(subject.phone_number).to eq "+34666999666" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.closed).to eq false }
     it { expect(subject.hours).to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
     it { expect(subject.created_at).to eq "2019-03-04T17:09:00.657Z" }
@@ -40,8 +40,8 @@ describe PlatformC::Venue do
         "address_line_1" => "93432 Dario Station",
         "address_line_2" => "Apt. 809",
         "website" => "https://localistico.com",
-        "lat" => "59.1485919774",
-        "lng" => "9.6239895111",
+        "lat" => BigDecimal("59.1485919774"),
+        "lng" => BigDecimal("9.6239895111"),
         "phone_number" => "+34666999666",
         "category_id" => -1,
         "closed" => false,
@@ -65,8 +65,8 @@ describe PlatformC::Venue do
     it { expect(subject.address_line_2).to eq "Apt. 809" }
     it { expect(subject.website).to eq "https://localistico.com" }
     it { expect(subject.phone_number).to eq "+34666999666" }
-    it { expect(subject.lat).to eq "59.1485919774" }
-    it { expect(subject.lng).to eq "9.6239895111" }
+    it { expect(subject.lat).to eq BigDecimal("59.1485919774") }
+    it { expect(subject.lng).to eq BigDecimal("9.6239895111") }
     it { expect(subject.closed).to eq false }
     it { expect(subject.hours).to eq "10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,10:00-22:00,11:00-18:00,11:00-18:00" }
   end

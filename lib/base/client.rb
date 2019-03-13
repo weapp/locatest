@@ -2,6 +2,8 @@
 
 module Base
   class Client < Foxy::Client
+    include Singleton
+
     class << self
       def platforms
         @platforms ||= []
@@ -12,7 +14,7 @@ module Base
       end
 
       def update_venue_in_all_platforms(data)
-        platforms.each { |platform| platform.new.update_async_from_standard(data) }
+        platforms.each { |platform| platform.instance.update_async_from_standard(data) }
       end
     end
 
@@ -53,8 +55,8 @@ module Base
     end
 
     def update_async_from_standard(data)
-      # update_worker.perform_async(venue_class.from_standard(data).as_json)
-      update_worker.new.perform(venue_class.from_standard(data).as_json)
+      update_worker.perform_async(venue_class.from_standard(data).as_json)
+      # update_worker.new.perform(venue_class.from_standard(data).as_json)
     end
 
     def path(venue)
@@ -84,6 +86,12 @@ module Base
       headers = opts.fetch(:headers, {})
 
       body = body.to_json if body
+
+      # return App.debug(method: method_name,
+      #                  path: path,
+      #                  params: params,
+      #                  headers: headers,
+      #                  body: body)
 
       @conn.run_request(method_name, path, body, headers) do |request|
         request.params.update(params) if params

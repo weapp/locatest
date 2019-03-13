@@ -4,8 +4,8 @@ module PlatformA
   class Venue < Base::Venue
     field :name
     field :address
-    field :lat
-    field :lng
+    field :lat, BigDecimal
+    field :lng, BigDecimal
     field :category_id, :integer
     field :closed, :bool
     field :hours # , VenueHoursA
@@ -14,7 +14,6 @@ module PlatformA
 
     class << self
       def from_standard(attrs)
-        p attrs
         new(name: attrs["name"],
             address: attrs["address_line_1"],
             lat: attrs["lat"],
